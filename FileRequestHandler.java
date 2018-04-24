@@ -1,6 +1,8 @@
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.Files;
 
 
 /**
@@ -50,16 +52,20 @@ public class FileRequestHandler {
              //404
              response.write("HTTP/1.1 404 Not Found".getBytes());
          } 
-         else if (){
+         else if (false){
              //400
          }
-         else if (){
-             //501
+         else if (!request.startsWith("GET ")){
+             //501 - function other than GET
+             response.write("HTTP/1.1 501 Not Implemented");
          }
-         else if (){
-             //505
+         else if (!request.endsWith("1.1")){
+             //505 - HTTP version other than 1.1
+             response.write("HTTP/1.1 505 HTTP Version Not Supported");
          }
-             return 200;
-         }
+         else {
+             //200 - accept
+             response.write("HTTP/1.1 200 OK");
+        }
     }
 }
