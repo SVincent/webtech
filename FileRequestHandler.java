@@ -4,7 +4,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Files;
 
-
 /**
  * Request handler for HTTP/1.1 GET requests.
  */
@@ -57,15 +56,15 @@ public class FileRequestHandler {
          }
          else if (!request.startsWith("GET ")){
              //501 - function other than GET
-             response.write("HTTP/1.1 501 Not Implemented");
+             response.write("HTTP/1.1 501 Not Implemented".getBytes());
          }
          else if (!request.endsWith("1.1")){
              //505 - HTTP version other than 1.1
-             response.write("HTTP/1.1 505 HTTP Version Not Supported");
+             response.write("HTTP/1.1 505 HTTP Version Not Supported".getBytes());
          }
          else {
              //200 - accept
-             response.write("HTTP/1.1 200 OK");
+             response.write("HTTP/1.1 200 OK".getBytes());
         }
     }
 }
