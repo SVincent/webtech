@@ -3,6 +3,8 @@ import java.io.OutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Files;
+import java.io.File;
+import java.time.LocalDateTime;
 
 /**
  * Request handler for HTTP/1.1 GET requests.
@@ -65,6 +67,36 @@ public class FileRequestHandler {
          else {
              //200 - accept
              response.write("HTTP/1.1 200 OK".getBytes());
+             
+
+             if (Files.isDirectory(path)) {
+                 
+                 //list directory contents
+                 //response.write(folder.listFiles().getBytes());
+
+                 /*
+                 for (final File fileEntry : folder.listFiles()) {
+                    if (fileEntry.isDirectory()) {
+                        listFilesForFolder(fileEntry);
+                    } else {
+                    System.out.println(fileEntry.getName());
+                    }
+                }
+                */
+                 //response.write(Files.(path).getBytes());
+                
+             }
+             else {
+                //private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+
+                //what a DATE header should look like: Date: Tue, 15 Nov 1994 08:12:31 GMT
+
+                /*LocalDateTime now = LocalDateTime.now();
+                System.out.println(dtf.format(now));
+                */
+                 response.write(Files.readAllBytes(path));
+                
+             }
         }
     }
 }
